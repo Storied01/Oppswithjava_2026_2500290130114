@@ -1,0 +1,38 @@
+import java.util.*;
+
+class Product {
+    int id;
+    String name;
+    int price;
+
+    Product(int id, String name, int price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+}
+
+class ProductComparator implements Comparator<Product> {
+    public int compare(Product a, Product b) {
+        if (a.price != b.price) {
+            return Integer.compare(b.price, a.price);
+        }
+        return a.name.compareTo(b.name);
+    }
+}
+
+public class Sorting1 {
+    public static void main(String[] args) {
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product (101, "Laptop",60000));
+        products.add(new Product (102,  "Mobile",40000));
+        products.add(new Product (103, "Tablet",20000));
+        products.add(new Product (104, "Mouse", 50000));
+
+        Collections.sort(products, new ProductComparator());
+
+        for (Product p : products) {
+            System.out.println(p.name + " " + p.price);
+        }
+    }
+}
